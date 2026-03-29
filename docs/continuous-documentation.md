@@ -54,6 +54,7 @@ More project files should be added incrementally to avoid losing structure or ov
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
 The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
 
@@ -112,3 +113,19 @@ Scope control:
 - architecture preserved: shared core separated from adapter layer
 - placeholders remain explicitly non-production
 >>>>>>> 665e639 (Baseline repo audit and first shared-core import batch)
+=======
+## Entry 10 — Codex roadmap import batch
+### What was imported
+- `docs/codex-roadmap-first-prompt.md` was imported to capture the implementation roadmap and acceptance criteria.
+- `docs/continuous-documentation-entry-10-codex-roadmap.md` was imported as a standalone log entry for roadmap rationale.
+
+### What remains missing
+- runnable source code for core modules, meeting adapters, media pipeline, host setup scripts, and tests described in the roadmap
+- CI configuration and package structure that match the documented architecture
+
+### What is runnable
+- documentation-only repository navigation and review
+
+### What is still placeholder-only
+- all architecture components referenced in documentation (TriggerRouter, PolicyEngine, SessionOrchestrator, adapters, media worker, Linux host setup, smoke tests) remain documentation placeholders until code is imported
+>>>>>>> f9403bb (docs: update import batch status in README and continuous log)
