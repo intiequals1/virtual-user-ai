@@ -51,3 +51,18 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 ## Entry 9 — Current repository import status
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
+
+## Entry 10 — Codex roadmap import batch
+### What was imported
+- `docs/codex-roadmap-first-prompt.md` was imported to capture the implementation roadmap and acceptance criteria.
+- `docs/continuous-documentation-entry-10-codex-roadmap.md` was imported as a standalone log entry for roadmap rationale.
+
+### What remains missing
+- runnable source code for core modules, meeting adapters, media pipeline, host setup scripts, and tests described in the roadmap
+- CI configuration and package structure that match the documented architecture
+
+### What is runnable
+- documentation-only repository navigation and review
+
+### What is still placeholder-only
+- all architecture components referenced in documentation (TriggerRouter, PolicyEngine, SessionOrchestrator, adapters, media worker, Linux host setup, smoke tests) remain documentation placeholders until code is imported
