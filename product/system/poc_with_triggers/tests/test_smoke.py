@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Smoke placeholder tests for baseline integrity."""
 
 from ..core import (
@@ -28,3 +29,9 @@ def test_smoke_webex_placeholder_join() -> None:
 
     assert result["component"] == "WebexMeetingAdapter"
     assert result["action"] == "join"
+=======
+"""Smoke test placeholder for POC structure.
+
+TODO: Add smoke validations for import hygiene and minimal pipeline wiring.
+"""
+>>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)

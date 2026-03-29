@@ -55,6 +55,7 @@ More project files should be added incrementally to avoid losing structure or ov
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
 The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
 
@@ -129,3 +130,8 @@ Scope control:
 ### What is still placeholder-only
 - all architecture components referenced in documentation (TriggerRouter, PolicyEngine, SessionOrchestrator, adapters, media worker, Linux host setup, smoke tests) remain documentation placeholders until code is imported
 >>>>>>> f9403bb (docs: update import batch status in README and continuous log)
+=======
+## Entry 10 — POC repository skeleton added
+A baseline POC repository skeleton was added under `product/system/poc_with_triggers` with the expected directories for core, adapters, media, services, config, tests, and Linux host setup.
+Only documented files and minimal TODO placeholders were created so implementation details can be filled incrementally without expanding scope.
+>>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)
