@@ -51,3 +51,19 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 ## Entry 9 — Current repository import status
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
+
+## Entry 12 — Baseline consolidation batch 1
+A first safe import batch was applied to reduce documentation-to-repository drift without expanding beyond v1.
+
+What changed:
+- README was rewritten to reflect project origin, real status, v1 scope, and baseline constraints.
+- A missing-file audit was added and used to define a controlled import batch.
+- Placeholder baseline modules were imported for shared core and initial Webex adapter boundaries.
+- Placeholder directories were created for media/services/linux host setup to keep intended structure explicit.
+- A minimal smoke-test placeholder was added for baseline integrity checks.
+- `test.txt` was removed as a non-project import artifact.
+
+What remains:
+- concrete media/service/host setup implementations
+- expanded smoke tests beyond placeholder checks
+- additional adapter tracks after Webex baseline remains stable

@@ -1,50 +1,56 @@
 # virtual-user-ai
 
-## Projektüberblick
-`virtual-user-ai` ist ein laufendes Integrationsprojekt zur Bereitstellung eines plattformübergreifenden, KI-gestützten Virtual-User-Systems. Das Repository dient als zentrale Arbeitsbasis für Architektur, Implementierung und Betriebsaufbau.
+## Origin and project intent
+`virtual-user-ai` started as a practical effort to build a controllable AI meeting participant that can operate across multiple platforms without duplicating core logic for each platform.
 
-## Herkunft des Projekts
-Das Projekt ist aus der praktischen Anforderung entstanden, Interaktionen eines „virtuellen Users“ über mehrere Kommunikations- und Ausführungsumgebungen konsistent abzubilden. Statt für jede Zielplattform eine eigene Logik zu entwickeln, wurde früh ein gemeinsamer Kernansatz gewählt, um Verhalten, Steuerung und Qualitätssicherung zu vereinheitlichen.
+The repository follows one architectural premise from the beginning:
+- **one shared AI core** for trigger handling, policy decisions, orchestration, and memory
+- **platform adapters** for meeting-specific behavior (Webex first in v1)
 
-## Architekturprinzip
-Die Leitlinie der Architektur lautet:
+## Current repository state (as of 2026-03-29)
+This repository is in a **baseline consolidation** phase.
 
-- **ein gemeinsamer AI Core** für fachliche Logik, Entscheidungsfindung und Orchestrierung
-- **mehrere Plattform-Adapter** für kanal- bzw. laufzeitspezifische Integration (z. B. Kommunikationsplattformen, Worker-Prozesse, Host-Umgebungen)
+What is true right now:
+- documentation exists for scope, architecture, and execution order
+- v1 boundaries are documented and intentionally constrained
+- repository import is still in progress and uses explicit placeholders where implementation is not yet imported
+- the next safe step is controlled batch import, not architecture refactor
 
-Dadurch werden Wiederverwendung, Wartbarkeit und vergleichbare Qualität über unterschiedliche Zielsysteme hinweg unterstützt.
+## v1 scope
+### In scope (v1)
+- join from a meeting link
+- listen to meeting audio
+- speak only when directly invoked
+- fallback to chat when audio output fails
+- keep session memory
+- expose human mute/stop control
+- keep explicit AI disclosure
 
-## Aktueller Projektstatus
-Das Projekt befindet sich im **POC-/Aufbauzustand** mit aktivem Fokus auf technische Konsolidierung.
+### Out of scope (v1)
+- autonomous interruptions
+- hidden/deceptive participation
+- emotion inference
+- avatar/video presence
+- persuasion/negotiation automation
 
-Der aktuelle Stand umfasst insbesondere:
+## Architecture guardrails
+- keep shared logic in `product/system/poc_with_triggers/core/`
+- keep platform-specific logic in `product/system/poc_with_triggers/adapters/`
+- keep media contracts separate in `product/system/poc_with_triggers/media/`
+- keep placeholders explicit until real implementation is imported
+- prefer small, testable import batches
 
-- **POC-Status:** zentrale Kernflüsse sind als Proof of Concept aufgebaut und werden schrittweise stabilisiert.
-- **Dokumentationsstatus:** Dokumentation ist vorhanden, aber noch unvollständig; Struktur und Inhalte werden fortlaufend nachgezogen.
-- **Webex-Track:** ein dedizierter Webex-Integrationspfad ist in Bearbeitung und Bestandteil der laufenden Validierung.
-- **Media Worker:** ein Media-Worker-Pfad ist vorgesehen bzw. in Umsetzung, um mediennahe Verarbeitung klar vom Kern zu entkoppeln.
-- **Linux-Host-Setup:** die Zielausführung auf Linux-Host-Umgebungen ist Teil des aktuellen Betriebs-Setups.
-- **Smoke-Tests:** grundlegende Smoke-Tests sind etabliert, um die wichtigsten End-to-End-Basispfade schnell zu prüfen.
-- **CI-Baseline:** eine initiale CI-Baseline ist vorhanden; weitere Härtung und Ausbau sind eingeplant.
+## Implementation status snapshot
+- **Shared core:** placeholder baseline imported for `TriggerRouter`, `PolicyEngine`, and `SessionOrchestrator`
+- **Adapters:** Webex adapter placeholder baseline imported (no credential-dependent behavior implemented)
+- **Media/services/host setup:** directory placeholders present for controlled follow-up imports
+- **Tests:** smoke-test placeholder present to keep baseline checks explicit
 
-## Scope für v1
-Der v1-Umfang konzentriert sich auf einen belastbaren, nachvollziehbaren End-to-End-Betrieb in klar definierten Kernpfaden.
+## Repository hygiene note
+`test.txt` is treated as a non-project import artifact and should be removed from the stable baseline.
 
-### In Scope (v1)
-- Stabilisierung des gemeinsamen AI Core für die primären Use Cases
-- Bereitstellung der erforderlichen Plattform-Adapter für den initialen Produktivpfad
-- Nachvollziehbarer Betriebsablauf auf Linux-Hosts
-- Basis-Qualitätssicherung über Smoke-Tests und CI-Grundabsicherung
-- Konsolidierte, praxisorientierte Projektdokumentation für Betrieb und Weiterentwicklung
-
-### Out of Scope (v1)
-- Vollständige Abdeckung aller denkbaren Plattformen und Integrationsvarianten
-- Erweiterte Enterprise-Funktionen außerhalb der Kernanforderungen
-- Umfassende Skalierungs- und Optimierungsmaßnahmen jenseits der v1-Betriebsfähigkeit
-- Vollständige Finalisierung aller langfristigen Architektur- und Prozessbausteine
-
-## Hinweis zum Repository-Import
-Der Import dieses Repositories ist **noch nicht vollständig abgeschlossen**. Entsprechend können Struktur, Historie, Inhalte und Referenzen in einzelnen Bereichen noch nachgeführt oder bereinigt werden.
-
-## Zusammenfassung
-`virtual-user-ai` entwickelt sich derzeit von einem POC in Richtung eines stabilen v1-Grundsystems. Maßgeblich ist dabei die Kombination aus **gemeinsamem AI Core** und **plattformbezogenen Adaptern**, ergänzt um schrittweise ausgebauten Betrieb, Tests, CI und Dokumentation.
+## Next steps
+1. continue missing-file imports in small v1-safe batches
+2. replace placeholders with concrete implementations incrementally
+3. keep continuous documentation synchronized with every import batch
+4. preserve core-vs-adapter separation and avoid architecture expansion beyond v1
