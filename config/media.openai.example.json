@@ -1,0 +1,14 @@
+{
+  "tts": {
+    "provider": "openai",
+    "model": "gpt-4o-mini-tts",
+    "default_voice": "alloy"
+  },
+  "injector": {
+    "injector": "noop"
+  },
+  "device_detection": {
+    "enabled": false,
+    "notes": "Wire detector implementation per deployment OS/runtime."
+  }
+}
