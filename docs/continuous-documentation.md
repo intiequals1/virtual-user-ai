@@ -52,18 +52,16 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
 
-## Entry 12 — Baseline consolidation batch 1
-A first safe import batch was applied to reduce documentation-to-repository drift without expanding beyond v1.
+## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
+The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
 
-What changed:
-- README was rewritten to reflect project origin, real status, v1 scope, and baseline constraints.
-- A missing-file audit was added and used to define a controlled import batch.
-- Placeholder baseline modules were imported for shared core and initial Webex adapter boundaries.
-- Placeholder directories were created for media/services/linux host setup to keep intended structure explicit.
-- A minimal smoke-test placeholder was added for baseline integrity checks.
-- `test.txt` was removed as a non-project import artifact.
+Included in this batch:
+- shared core modules for trigger routing, policy gating, and orchestration
+- stable media contracts plus a dry-run media worker path
+- Webex adapter as the first real adapter track in dry-run mode
+- smoke tests for trigger-to-audio and chat fallback behavior
 
-What remains:
-- concrete media/service/host setup implementations
-- expanded smoke tests beyond placeholder checks
-- additional adapter tracks after Webex baseline remains stable
+Explicit placeholders retained (not complete features):
+- Webex mute, unmute, and reconnect are placeholders
+- real credential-backed Webex join/chat flows are not imported yet
+- non-Webex adapters are intentionally not imported in this batch
