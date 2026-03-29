@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Shared core package exports."""
 
 from core.dialogue import DialogueManager
@@ -14,3 +15,6 @@ __all__ = [
     "TriggerEvent",
     "TriggerType",
 ]
+=======
+"""Shared core package for Virtual User AI POC (v1 baseline)."""
+>>>>>>> 665e639 (Baseline repo audit and first shared-core import batch)
