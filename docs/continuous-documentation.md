@@ -51,3 +51,17 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 ## Entry 9 — Current repository import status
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
+
+## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
+The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
+
+Included in this batch:
+- shared core modules for trigger routing, policy gating, and orchestration
+- stable media contracts plus a dry-run media worker path
+- Webex adapter as the first real adapter track in dry-run mode
+- smoke tests for trigger-to-audio and chat fallback behavior
+
+Explicit placeholders retained (not complete features):
+- Webex mute, unmute, and reconnect are placeholders
+- real credential-backed Webex join/chat flows are not imported yet
+- non-Webex adapters are intentionally not imported in this batch
