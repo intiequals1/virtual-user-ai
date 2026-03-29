@@ -51,3 +51,7 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 ## Entry 9 — Current repository import status
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
+
+## Entry 10 — POC repository skeleton added
+A baseline POC repository skeleton was added under `product/system/poc_with_triggers` with the expected directories for core, adapters, media, services, config, tests, and Linux host setup.
+Only documented files and minimal TODO placeholders were created so implementation details can be filled incrementally without expanding scope.
