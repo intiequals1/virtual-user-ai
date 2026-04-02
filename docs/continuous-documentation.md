@@ -51,3 +51,24 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 ## Entry 9 — Current repository import status
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
+
+## Entry 10 — Codex roadmap added
+A dedicated Codex roadmap was added under `docs/codex-roadmap-first-prompt.md` to anchor implementation sequencing and v1 boundaries.
+
+## Entry 11 — Repository baseline audit and first code import batch
+A repository audit was executed against the documented POC target structure.
+
+Findings:
+- core, adapters, media, host setup, tests, and CI baseline implementation files were not yet present in the repository.
+
+Action taken (next batch only):
+- imported phase-1 shared-core baseline files:
+  - `core/trigger_router.py`
+  - `core/policy_engine.py`
+  - `core/session_orchestrator.py`
+
+Scope control:
+- no adapter/media/host setup import in this batch
+- no broad refactor
+- architecture preserved: shared core separated from adapter layer
+- placeholders remain explicitly non-production
