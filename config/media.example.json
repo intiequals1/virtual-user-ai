@@ -1,0 +1,14 @@
+{
+  "tts": {
+    "provider": "mock",
+    "default_voice": "alloy"
+  },
+  "injector": {
+    "injector": "logging",
+    "target_device_id": null
+  },
+  "device_detection": {
+    "enabled": false,
+    "notes": "Host audio device enumeration/routing is environment-dependent."
+  }
+}
