@@ -53,6 +53,7 @@ The repository now contains an initial repository description and a continuous d
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
 The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
 
@@ -89,3 +90,25 @@ A safe incremental repository-import batch was completed to establish the local 
 - Linux host setup package (`host_setup/linux`)
 - CI baseline workflow and additional adapter tracks (Teams, Zoom, Google Meet)
 >>>>>>> 2314bc3 (Add v1 POC scaffold batch with core, adapters, and smoke tests)
+=======
+## Entry 10 — Codex roadmap added
+A dedicated Codex roadmap was added under `docs/codex-roadmap-first-prompt.md` to anchor implementation sequencing and v1 boundaries.
+
+## Entry 11 — Repository baseline audit and first code import batch
+A repository audit was executed against the documented POC target structure.
+
+Findings:
+- core, adapters, media, host setup, tests, and CI baseline implementation files were not yet present in the repository.
+
+Action taken (next batch only):
+- imported phase-1 shared-core baseline files:
+  - `core/trigger_router.py`
+  - `core/policy_engine.py`
+  - `core/session_orchestrator.py`
+
+Scope control:
+- no adapter/media/host setup import in this batch
+- no broad refactor
+- architecture preserved: shared core separated from adapter layer
+- placeholders remain explicitly non-production
+>>>>>>> 665e639 (Baseline repo audit and first shared-core import batch)
