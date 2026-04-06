@@ -1,31 +1,37 @@
-from adapters.base import AdapterLayer, JoinOptions, bootstrap_layers
-from adapters.mock_meeting import MockMeetingAdapter
-from adapters.webex_meeting import WebexMeetingAdapter
-from host_setup.linux import setup_linux_host
+from __future__ import annotations
+
+import unittest
+
+from virtual_user_ai.adapters.webex_meeting import WebexMeetingAdapter
+from virtual_user_ai.core.policy_engine import PolicyEngine
+from virtual_user_ai.core.session_orchestrator import SessionOrchestrator
+from virtual_user_ai.core.trigger_router import TriggerRouter
 
 
-def test_layer_bootstrap_order_keeps_webex_and_linux_after_shared_layers():
-    assert bootstrap_layers() == [
-        AdapterLayer.CORE,
-        AdapterLayer.MEDIA,
-        AdapterLayer.WEBEX,
-        AdapterLayer.HOST_SETUP_LINUX,
-    ]
+class SmokeTests(unittest.TestCase):
+    def test_trigger_to_audio_path(self) -> None:
+        router = TriggerRouter()
+        adapter = WebexMeetingAdapter(dry_run=True)
+        self.assertTrue(adapter.join_meeting("https://example.webex.com/meeting"))
+        orchestrator = SessionOrchestrator(policy_engine=PolicyEngine(), adapter=adapter)
+
+        event = router.route("push_to_talk", "status update please", "host")
+        result = orchestrator.handle_event(event)
+
+        self.assertEqual(result, "audio")
+        self.assertIn("response:audio", orchestrator.diagnostics)
+
+    def test_chat_fallback_when_audio_fails(self) -> None:
+        router = TriggerRouter()
+        adapter = WebexMeetingAdapter(dry_run=True)
+        orchestrator = SessionOrchestrator(policy_engine=PolicyEngine(), adapter=adapter)
+
+        event = router.route("chat", "fallback test", "host")
+        result = orchestrator.handle_event(event)
+
+        self.assertEqual(result, "chat_fallback")
+        self.assertIn("response:chat_fallback", orchestrator.diagnostics)
 
 
-def test_mock_adapter_dry_run_stays_available():
-    adapter = MockMeetingAdapter()
-    result = adapter.join(JoinOptions(meeting_url="https://example.invalid", dry_run=True))
-    assert result["status"] == "simulated"
-
-
-def test_webex_adapter_allows_placeholder_dry_run():
-    adapter = WebexMeetingAdapter()
-    result = adapter.join(JoinOptions(meeting_url="https://webex.com/meet/demo", dry_run=True))
-    assert result["provider"] == "webex"
-    assert result["status"] == "dry-run"
-
-
-def test_linux_host_setup_dry_run_stays_available():
-    result = setup_linux_host(dry_run=True)
-    assert result["status"] == "dry-run"
+if __name__ == "__main__":
+    unittest.main()
