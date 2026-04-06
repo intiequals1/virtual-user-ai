@@ -52,6 +52,7 @@ A lightweight CI baseline was defined to run byte-compilation and smoke tests fo
 The repository now contains an initial repository description and a continuous documentation file.
 More project files should be added incrementally to avoid losing structure or overwriting existing contents.
 
+<<<<<<< HEAD
 ## Entry 11 — Repository import batch: shared core + Webex dry-run adapter
 The next missing import batch was added from the local project structure as a minimal v1-consistent skeleton.
 
@@ -65,3 +66,26 @@ Explicit placeholders retained (not complete features):
 - Webex mute, unmute, and reconnect are placeholders
 - real credential-backed Webex join/chat flows are not imported yet
 - non-Webex adapters are intentionally not imported in this batch
+=======
+## Entry 11 — Repository import batch: shared-core POC scaffold
+A safe incremental repository-import batch was completed to establish the local v1 POC structure without expanding scope.
+
+### Added in this batch
+- `src/virtual_user_ai/` package scaffold with explicit shared core modules:
+  - TriggerRouter
+  - PolicyEngine
+  - SessionOrchestrator
+- `src/virtual_user_ai/adapters/` contract boundary and implementations:
+  - abstract `MeetingAdapter`
+  - `MockMeetingAdapter` for local smoke validation
+  - `WebexMeetingAdapter` dry-run placeholder with explicit credential/runtime dependency markers
+- `src/virtual_user_ai/media/contracts.py` placeholder media contract
+- `tests/test_smoke.py` to validate audio success and chat fallback behavior
+- README expanded to document current structure and explicit placeholders
+
+### Still missing after this batch
+- Real meeting join/leave/chat integration for Webex
+- TTS provider + injector implementation behind media contracts
+- Linux host setup package (`host_setup/linux`)
+- CI baseline workflow and additional adapter tracks (Teams, Zoom, Google Meet)
+>>>>>>> 2314bc3 (Add v1 POC scaffold batch with core, adapters, and smoke tests)
