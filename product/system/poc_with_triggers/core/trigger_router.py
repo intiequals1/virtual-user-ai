@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Trigger router placeholder.
 
 This module intentionally keeps v1 trigger routing explicit while concrete logic is
@@ -19,3 +20,9 @@ class TriggerRouter:
             "component": "TriggerRouter",
             "received_event": event,
         }
+=======
+"""Trigger routing entry point for the POC.
+
+TODO: Implement TriggerRouter behavior for push-to-talk, wake-word, and chat trigger events.
+"""
+>>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)

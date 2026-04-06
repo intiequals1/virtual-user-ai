@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Policy engine placeholder for v1 baseline consolidation."""
 
 
@@ -16,3 +17,9 @@ class PolicyEngine:
             "reason": "placeholder_default_allow",
             "routed_event": routed_event,
         }
+=======
+"""Policy approval gate for invocation events.
+
+TODO: Implement PolicyEngine approval and rejection decisions for v1 policy constraints.
+"""
+>>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)
