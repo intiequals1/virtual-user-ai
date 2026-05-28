@@ -33,7 +33,7 @@ class V1AcceptanceTests(unittest.TestCase):
 
         self.assertEqual(event.trigger_type, TriggerType.CHAT)
         self.assertEqual(result, "chat_fallback")
-        self.assertIn("response:chat_fallback", orchestrator.diagnostics)
+        self.assertIn("response:chat_fallback:audio delivery failed", orchestrator.diagnostics)
 
     def test_wake_word_is_disabled_by_default_in_v1(self) -> None:
         router = TriggerRouter()
