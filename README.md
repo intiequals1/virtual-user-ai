@@ -7,13 +7,14 @@ The repository follows one architectural premise from the beginning:
 - **one shared AI core** for trigger handling, policy decisions, orchestration, and memory
 - **platform adapters** for meeting-specific behavior (Webex first in v1)
 
-## Current repository state (as of 2026-03-29)
+## Current repository state (as of 2026-05-28)
 This repository is in a **baseline consolidation** phase.
 
 What is true right now:
 - documentation exists for scope, architecture, and execution order
 - v1 boundaries are documented and intentionally constrained
 - repository import is still in progress and uses explicit placeholders where implementation is not yet imported
+- the baseline is now importable and smoke-testable
 - the next safe step is controlled batch import, not architecture refactor
 
 ## v1 scope
@@ -44,13 +45,15 @@ What is true right now:
 - **Shared core:** placeholder baseline imported for `TriggerRouter`, `PolicyEngine`, and `SessionOrchestrator`
 - **Adapters:** Webex adapter placeholder baseline imported (no credential-dependent behavior implemented)
 - **Media/services/host setup:** directory placeholders present for controlled follow-up imports
-- **Tests:** smoke-test placeholder present to keep baseline checks explicit
+- **Tests:** root smoke tests and POC smoke tests pass locally
+- **Documentation:** Entry 16 preserves the clean baseline-hygiene milestone; Entry 17 documents v1 MVP acceptance criteria
 
 ## Repository hygiene note
-`test.txt` is treated as a non-project import artifact and should be removed from the stable baseline.
+`test.txt` is no longer present in the local stable baseline. No deletion commit is required for that artifact.
 
 ## Next steps
-1. continue missing-file imports in small v1-safe batches
-2. replace placeholders with concrete implementations incrementally
-3. keep continuous documentation synchronized with every import batch
-4. preserve core-vs-adapter separation and avoid architecture expansion beyond v1
+1. add focused acceptance tests for push-to-talk, chat fallback, and wake-word disabled behavior
+2. decide the next small v1-safe import batch
+3. replace placeholders with concrete implementations incrementally
+4. keep continuous documentation synchronized with every import batch
+5. preserve core-vs-adapter separation and avoid architecture expansion beyond v1
