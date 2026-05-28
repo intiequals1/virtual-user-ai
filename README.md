@@ -48,6 +48,43 @@ What is true right now:
 - **Tests:** root smoke tests and POC smoke tests pass locally
 - **Documentation:** Entry 16 preserves the clean baseline-hygiene milestone; Entry 17 documents v1 MVP acceptance criteria
 
+## Host media diagnostics CLI
+A safe host-media diagnostics rendering path is available for inspecting local audio-tool boundaries without opening audio devices or routing audio.
+
+Run:
+
+```bash
+python3 -m virtual_user_ai.media.diagnostics_cli
+```
+
+Optional deterministic platform label:
+
+```bash
+python3 -m virtual_user_ai.media.diagnostics_cli --platform darwin
+```
+
+Example output shape:
+
+```text
+Platform: darwin
+Recommended media mode: file_only_audio_artifact
+Reason: FFmpeg available but no host virtual microphone control detected
+Capabilities:
+- ffmpeg: available (...)
+- pactl: missing (not found)
+- pw-cli: missing (not found)
+- arecord: missing (not found)
+- aplay: missing (not found)
+```
+
+Safety boundary:
+- the CLI performs passive diagnostics only
+- it does not open audio devices
+- it does not create a virtual microphone
+- it does not run PulseAudio or PipeWire control commands
+- it does not execute FFmpeg
+- it does not add runtime dependencies
+
 ## Repository hygiene note
 `test.txt` is no longer present in the local stable baseline. No deletion commit is required for that artifact.
 
