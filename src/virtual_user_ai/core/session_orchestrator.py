@@ -15,6 +15,13 @@ class SessionOrchestrator:
     meeting_memory: list[str] = field(default_factory=list)
     diagnostics: list[str] = field(default_factory=list)
 
+    def _last_audio_failure_reason(self) -> str:
+        media_result = getattr(self.adapter, "last_media_result", None)
+        reason = getattr(media_result, "reason", None)
+        if isinstance(reason, str) and reason:
+            return reason
+        return "audio delivery failed"
+
     def handle_event(self, event: TriggerEvent, context: PolicyContext | None = None) -> str:
         decision = self.policy_engine.evaluate(event, context=context)
         if not decision.approved:
@@ -29,6 +36,7 @@ class SessionOrchestrator:
             self.diagnostics.append("response:audio")
             return "audio"
 
-        self.adapter.send_chat_message(f"(audio failed) {response}")
-        self.diagnostics.append("response:chat_fallback")
+        fallback_reason = self._last_audio_failure_reason()
+        self.adapter.send_chat_message(f"(audio failed: {fallback_reason}) {response}")
+        self.diagnostics.append(f"response:chat_fallback:{fallback_reason}")
         return "chat_fallback"
