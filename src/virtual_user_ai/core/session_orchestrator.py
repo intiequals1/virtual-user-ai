@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from virtual_user_ai.core.policy_engine import PolicyEngine
-from virtual_user_ai.core.types import TriggerEvent
+from virtual_user_ai.core.types import PolicyContext, TriggerEvent
 
 
 @dataclass
@@ -15,8 +15,8 @@ class SessionOrchestrator:
     meeting_memory: list[str] = field(default_factory=list)
     diagnostics: list[str] = field(default_factory=list)
 
-    def handle_event(self, event: TriggerEvent) -> str:
-        decision = self.policy_engine.evaluate(event)
+    def handle_event(self, event: TriggerEvent, context: PolicyContext | None = None) -> str:
+        decision = self.policy_engine.evaluate(event, context=context)
         if not decision.approved:
             self.diagnostics.append(f"not_allowed:{decision.reason}")
             return "not_allowed"
