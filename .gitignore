@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 2314bc3 (Add v1 POC scaffold batch with core, adapters, and smoke tests)
 __pycache__/
 *.pyc
+.pytest_cache/
+.venv/
+.env
+.DS_Store
