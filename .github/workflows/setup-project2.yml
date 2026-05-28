@@ -22,18 +22,20 @@ jobs:
       OWNER: ${{ inputs.owner }}
       PROJECT_NUMBER: ${{ inputs.project_number }}
       REPO: ${{ github.event.repository.name }}
+      PROJECT_SETUP_TOKEN: ${{ secrets.PROJECT_SETUP_TOKEN }}
     steps:
       - name: Validate token
-        if: ${{ secrets.PROJECT_SETUP_TOKEN == '' }}
         run: |
-          echo "Missing secret PROJECT_SETUP_TOKEN."
-          echo "Add a PAT with repo + project scopes as PROJECT_SETUP_TOKEN in repository secrets."
-          exit 1
+          if [ -z "$PROJECT_SETUP_TOKEN" ]; then
+            echo "Missing secret PROJECT_SETUP_TOKEN."
+            echo "Add a PAT with repo + project scopes as PROJECT_SETUP_TOKEN in repository secrets."
+            exit 1
+          fi
 
       - name: Seed labels, issues, and project items
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PROJECT_SETUP_TOKEN }}
+          github-token: ${{ env.PROJECT_SETUP_TOKEN }}
           script: |
             const owner = process.env.OWNER || 'intiequals1';
             const repo = process.env.REPO;
