@@ -1,14 +1,22 @@
-<<<<<<< HEAD
-"""Policy engine placeholder for v1 baseline consolidation."""
+"""Policy approval gate for v1 baseline invocation events.
+
+Real policy controls are intentionally deferred to later controlled import
+batches. The placeholder keeps the baseline importable and makes approval
+metadata explicit for smoke tests.
+"""
+
+from __future__ import annotations
 
 
 class PolicyEngine:
-    """Single approval gate for routed events (placeholder baseline)."""
+    """Single approval gate for routed events in the shared AI core."""
 
     def evaluate(self, routed_event: dict) -> dict:
-        """Return placeholder approval metadata.
+        """Return placeholder approval metadata for a routed event.
 
-        Real policy controls are intentionally deferred to later import batches.
+        The default approval is intentionally explicit and must be replaced by
+        concrete v1 constraints such as consent validation, AI disclosure,
+        human mute/stop control, and role-based permissions.
         """
         return {
             "status": "placeholder",
@@ -17,9 +25,3 @@ class PolicyEngine:
             "reason": "placeholder_default_allow",
             "routed_event": routed_event,
         }
-=======
-"""Policy approval gate for invocation events.
-
-TODO: Implement PolicyEngine approval and rejection decisions for v1 policy constraints.
-"""
->>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)
