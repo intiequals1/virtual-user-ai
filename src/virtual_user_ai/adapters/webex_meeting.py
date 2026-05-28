@@ -4,6 +4,7 @@ from dataclasses import dataclass, field
 
 from virtual_user_ai.adapters.webex_client import DryRunWebexApiClient, WebexApiClient
 from virtual_user_ai.adapters.webex_config import WebexConfig
+from virtual_user_ai.media.contracts import MediaRequest, MediaResult
 from virtual_user_ai.media.worker import MediaWorker
 
 
@@ -17,6 +18,7 @@ class WebexMeetingAdapter:
     api_client: WebexApiClient | None = None
     joined: bool = False
     meeting_id: str | None = None
+    last_media_result: MediaResult | None = None
     session_log: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
@@ -51,9 +53,15 @@ class WebexMeetingAdapter:
         if not self.joined:
             self.session_log.append("audio:not_joined")
             return False
-        ok = self.media_worker.speak(text)
-        self.session_log.append("audio:ok" if ok else "audio:failed")
-        return ok
+
+        result = self.media_worker.process(MediaRequest(text=text))
+        self.last_media_result = result
+        if result.success:
+            self.session_log.append("audio:ok")
+            return True
+
+        self.session_log.append(f"audio:failed:{result.reason}")
+        return False
 
     def send_chat_message(self, text: str) -> bool:
         if not self.joined or not self.meeting_id:
@@ -80,5 +88,6 @@ class WebexMeetingAdapter:
             "dry_run": self.dry_run,
             "real_mode_requested": self.config.real_mode_requested if self.config else False,
             "real_mode_available": self.config.can_use_real_mode() if self.config else False,
+            "last_media_result": self.last_media_result,
             "events": list(self.session_log),
         }
