@@ -81,6 +81,16 @@ class WebexMeetingAdapter:
     def reconnect(self) -> None:
         self.session_log.append("reconnect:placeholder")
 
+    def _last_media_result_state(self) -> dict[str, object] | None:
+        if self.last_media_result is None:
+            return None
+        return {
+            "success": self.last_media_result.success,
+            "output": self.last_media_result.output,
+            "reason": self.last_media_result.reason,
+            "wav_path": self.last_media_result.wav_path,
+        }
+
     def participant_state(self) -> dict[str, object]:
         return {
             "joined": self.joined,
@@ -88,6 +98,6 @@ class WebexMeetingAdapter:
             "dry_run": self.dry_run,
             "real_mode_requested": self.config.real_mode_requested if self.config else False,
             "real_mode_available": self.config.can_use_real_mode() if self.config else False,
-            "last_media_result": self.last_media_result,
+            "last_media_result": self._last_media_result_state(),
             "events": list(self.session_log),
         }
