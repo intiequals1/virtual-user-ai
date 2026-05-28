@@ -1,28 +1,31 @@
-<<<<<<< HEAD
-"""Trigger router placeholder.
+"""Trigger routing entry point for the v1 POC baseline.
 
-This module intentionally keeps v1 trigger routing explicit while concrete logic is
-imported in later controlled batches.
+This module intentionally keeps v1 trigger routing explicit while concrete
+routing logic is imported in later controlled batches.
 """
+
+from __future__ import annotations
 
 
 class TriggerRouter:
-    """Single entry point for trigger events (placeholder baseline)."""
+    """Single entry point for trigger events in the shared AI core."""
+
+    SUPPORTED_TRIGGER_TYPES = {"push_to_talk", "chat", "wake_word"}
 
     def route(self, event: dict) -> dict:
-        """Route an event through the shared trigger pipeline.
+        """Route an invocation event through the shared trigger pipeline.
 
-        Placeholder behavior returns a structured stub until real routing logic is
-        imported.
+        Placeholder behavior returns a structured routing result until concrete
+        trigger logic is imported. This keeps the v1 baseline importable and
+        testable without expanding architecture scope.
         """
+        trigger_type = event.get("trigger_type", "unknown")
+        is_supported = trigger_type in self.SUPPORTED_TRIGGER_TYPES
+
         return {
             "status": "placeholder",
             "component": "TriggerRouter",
+            "trigger_type": trigger_type,
+            "supported": is_supported,
             "received_event": event,
         }
-=======
-"""Trigger routing entry point for the POC.
-
-TODO: Implement TriggerRouter behavior for push-to-talk, wake-word, and chat trigger events.
-"""
->>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)
