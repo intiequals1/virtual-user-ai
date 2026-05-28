@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from virtual_user_ai.adapters.webex_config import WebexConfig
 from virtual_user_ai.media.worker import MediaWorker
 
 
@@ -11,12 +12,21 @@ class WebexMeetingAdapter:
 
     dry_run: bool = True
     media_worker: MediaWorker = field(default_factory=MediaWorker)
+    config: WebexConfig | None = None
     joined: bool = False
     session_log: list[str] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        if self.config is not None:
+            self.dry_run = self.config.dry_run
 
     def join_meeting(self, meeting_link: str) -> bool:
         if not meeting_link.startswith("https://"):
             self.session_log.append("join:invalid_link")
+            return False
+
+        if self.config is not None and self.config.real_mode_requested and not self.config.can_use_real_mode():
+            self.session_log.append(f"join:blocked:{self.config.validation_reason()}")
             return False
 
         self.joined = True
@@ -56,5 +66,7 @@ class WebexMeetingAdapter:
         return {
             "joined": self.joined,
             "dry_run": self.dry_run,
+            "real_mode_requested": self.config.real_mode_requested if self.config else False,
+            "real_mode_available": self.config.can_use_real_mode() if self.config else False,
             "events": list(self.session_log),
         }
