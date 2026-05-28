@@ -13,7 +13,7 @@ class WebexDryRunAdapterTests(unittest.TestCase):
 
         self.assertFalse(joined)
         self.assertFalse(adapter.joined)
-        self.assertIn("join:invalid_link", adapter.session_log)
+        self.assertIn("join:blocked:invalid meeting link", adapter.session_log)
 
     def test_join_meeting_records_dry_run_state(self) -> None:
         adapter = WebexMeetingAdapter(dry_run=True)
@@ -24,6 +24,7 @@ class WebexDryRunAdapterTests(unittest.TestCase):
         self.assertTrue(joined)
         self.assertTrue(state["joined"])
         self.assertTrue(state["dry_run"])
+        self.assertEqual(state["meeting_id"], "dry-run:https://example.webex.com/meeting")
         self.assertIn("join:dry_run", state["events"])
 
     def test_chat_message_requires_joined_session(self) -> None:
