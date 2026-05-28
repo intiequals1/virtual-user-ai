@@ -1,10 +1,14 @@
-"""Shared core data models used across dialogue, policy, and triggers."""
+"""Shared core data models used across dialogue, policy, and triggers.
+
+The current local development environment uses Python 3.9.6. dataclass(slots=True)
+requires Python 3.10+, so the v1 baseline keeps plain dataclasses for now.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
+from typing import Any, Dict
 
 
 class TriggerType(str, Enum):
@@ -15,23 +19,23 @@ class TriggerType(str, Enum):
     WAKE_WORD = "wake_word"
 
 
-@dataclass(slots=True)
+@dataclass
 class TriggerEvent:
     """Input event produced by any trigger source."""
 
     trigger_type: TriggerType
-    payload: dict[str, Any] = field(default_factory=dict)
+    payload: Dict[str, Any] = field(default_factory=dict)
 
 
-@dataclass(slots=True)
+@dataclass
 class DialogueTurn:
     """Represents a single turn that can be evaluated by policy and dialogue."""
 
     text: str
-    metadata: dict[str, Any] = field(default_factory=dict)
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
 
-@dataclass(slots=True)
+@dataclass
 class PolicyDecision:
     """Result of centralized policy checks."""
 
