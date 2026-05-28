@@ -1,9 +1,10 @@
-<<<<<<< HEAD
 """Webex adapter placeholder.
 
 The adapter boundary is present to preserve shared-core vs adapter separation. Real
 Webex behavior remains intentionally unimplemented in this baseline batch.
 """
+
+from __future__ import annotations
 
 
 class WebexMeetingAdapter:
@@ -16,9 +17,3 @@ class WebexMeetingAdapter:
             "action": "join",
             "meeting_link": meeting_link,
         }
-=======
-"""Webex adapter skeleton placeholder.
-
-TODO: Implement dry-run join/leave/chat/audio wiring behind configuration gates.
-"""
->>>>>>> a37cbaa (Create POC skeleton under product/system/poc_with_triggers)
