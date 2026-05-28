@@ -30,7 +30,7 @@ class SmokeTests(unittest.TestCase):
         result = orchestrator.handle_event(event)
 
         self.assertEqual(result, "chat_fallback")
-        self.assertIn("response:chat_fallback", orchestrator.diagnostics)
+        self.assertIn("response:chat_fallback:audio delivery failed", orchestrator.diagnostics)
 
 
 if __name__ == "__main__":
