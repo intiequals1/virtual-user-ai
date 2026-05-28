@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-"""Shared core package exports."""
+"""Shared core package exports for Virtual User AI POC v1 baseline."""
 
 from core.dialogue import DialogueManager
 from core.models import DialogueTurn, PolicyDecision, TriggerEvent, TriggerType
@@ -15,6 +14,3 @@ __all__ = [
     "TriggerEvent",
     "TriggerType",
 ]
-=======
-"""Shared core package for Virtual User AI POC (v1 baseline)."""
->>>>>>> 665e639 (Baseline repo audit and first shared-core import batch)
